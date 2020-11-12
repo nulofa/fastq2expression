@@ -64,13 +64,13 @@ def hit_me2():
     else:
         on_hit2 = False
 
-l = tk.Label(window, width=50, text='单端或双端 ?')
+l = tk.Label(window, width=50, text='single-end or paired-end ?')
 l.pack(pady=5)
 var1 = tk.IntVar()  # 定义var1和var2整型变量用来存放选择行为返回值
 var1.set(1)
-r1 = tk.Radiobutton(window, text='单端',variable=var1, value=1, command=record_selection)
+r1 = tk.Radiobutton(window, text='se',variable=var1, value=1, command=record_selection)
 r1.pack(anchor="c")
-r2 = tk.Radiobutton(window, text='双端',variable=var1, value=2, command=record_selection)
+r2 = tk.Radiobutton(window, text='pe',variable=var1, value=2, command=record_selection)
 r2.pack(anchor="c")
 
 # 第5步，在窗口界面设置放置Button按键
@@ -78,13 +78,13 @@ t0 = tk.Text(window, font=('Arial', 12), width=30, height=1)
 t0.config(state='disabled')
 # 说明： bg为背景，fg为字体颜色，font为字体，width为长，height为高，这里的长和高是字符的长和高，比如height=2,就是标签有2个字符这么高
 t0.pack(pady=5)
-select_b1 = tk.Button(window, text='选择fastq文件', font=('Arial', 12), width=10, height=1, command=hit_me)
+select_b1 = tk.Button(window, text='select fastq file(forward)', font=('Arial', 12), width=20, height=1, command=hit_me)
 select_b1.pack(pady=5)
 t1 = tk.Text(window, font=('Arial', 12), width=30, height=1)
 t1.config(state='disabled')
 # 说明： bg为背景，fg为字体颜色，font为字体，width为长，height为高，这里的长和高是字符的长和高，比如height=2,就是标签有2个字符这么高
 t1.pack(pady=5)
-select_b2 = tk.Button(window, text='选择fastq文件', font=('Arial', 12), width=10, height=1, command=hit_me2)
+select_b2 = tk.Button(window, text='select fastq file(reverse)', font=('Arial', 12), width=20, height=1, command=hit_me2)
 select_b2.pack(pady=5)
 select_b1.config(stat='normal')
 select_b2.config(stat='disabled')
@@ -234,7 +234,7 @@ def f2exp():
             #
             t2.config(state='normal')
             # #t2.insert('end', res.decode())
-            t2.insert('end', '\n完成!\n样本表达谱(%s)已输出到与fastq文件同目录下' % comon_n.replace('.fastq', '.exp.txt'))
+            t2.insert('end', '\ndone!\nepxression profile(%s) generatedin the same directory as the fastq file\n' % comon_n.replace('.fastq', '.exp.txt'))
             t2.config(state='disabled')
             del_file('./tmp')
 
@@ -282,18 +282,18 @@ def f2exp():
 
             t2.config(state='normal')
             # # #t2.insert('end', res.decode())
-            t2.insert('end', '\n完成!\n样本表达谱(%s)已输出到与fastq文件同目录下' % (fn.replace('.fastq', '.txt')))
+            t2.insert('end', '\ndone!\nepxression profile(%s) generatedin the same directory as the fastq file\n' % (fn.replace('.fastq', '.txt')))
             t2.config(state='disabled')
             del_file('./tmp')
             select_b1.config(state='normal')
         else:
             select_b1.config(state='normal')
             t2.config(state='normal')
-            t2.insert('end', '\n请选择fastq文件')
+            t2.insert('end', '\nselect fastq file')
             t2.config(state='disabled')
     else:
         t2.config(state='normal')
-        t2.insert('end', '\n请重新选择fastq文件')
+        t2.insert('end', '\nreselect fastq file')
         t2.config(state='disabled')
     select_b1.config(state='normal')
     select_b2.config(state='normal')
